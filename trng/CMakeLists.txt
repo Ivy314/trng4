@@ -92,6 +92,11 @@ set(SOURCE_FILES
         )
 
 add_library(trng4 ${HEADER_FILES} ${SOURCE_FILES})
+
+set_target_properties(trng4  PROPERTIES
+ MAP_IMPORTED_CONFIG_RELWITHDEBINFO  Release)
+
+set_target_properties(trng4 PROPERTIES DEBUG_POSTFIX "d") 
 set_target_properties(trng4 PROPERTIES CLEAN_DIRECT_OUTPUT 1)
 target_include_directories(trng4 PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
@@ -104,14 +109,16 @@ if (BUILD_SHARED_LIBS)
     endif ()
     set_target_properties(trng4 PROPERTIES VERSION ${PROJECT_VERSION})
     set_target_properties(trng4 PROPERTIES SOVERSION 24)
-    set_target_properties(trng4 PROPERTIES PUBLIC_HEADER "${HEADER_FILES}")
 endif ()
+set_target_properties(trng4 PROPERTIES PUBLIC_HEADER "${HEADER_FILES}")
 
 install(TARGETS trng4
         EXPORT "${targets_export_name}"
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
         PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/trng)
+
+
 
 find_program(PVS_STUDIO pvs-studio)
 

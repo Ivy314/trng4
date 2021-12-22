@@ -83,11 +83,11 @@ namespace trng {
     void seed(unsigned long);
     template<typename gen>
     void seed(gen &g) {
-      const result_type r1{static_cast<uint32_t>(g()) % static_cast<uint32_t>(modulus)};
-      const result_type r2{static_cast<uint32_t>(g()) % static_cast<uint32_t>(modulus)};
-      const result_type r3{static_cast<uint32_t>(g()) % static_cast<uint32_t>(modulus)};
-      const result_type r4{static_cast<uint32_t>(g()) % static_cast<uint32_t>(modulus)};
-      const result_type r5{static_cast<uint32_t>(g()) % static_cast<uint32_t>(modulus)};
+      const result_type r1{static_cast<result_type>(static_cast<uint32_t>(g()) % static_cast<uint32_t>(modulus))};
+      const result_type r2{static_cast<result_type>(static_cast<uint32_t>(g()) % static_cast<uint32_t>(modulus))};
+      const result_type r3{static_cast<result_type>(static_cast<uint32_t>(g()) % static_cast<uint32_t>(modulus))};
+      const result_type r4{static_cast<result_type>(static_cast<uint32_t>(g()) % static_cast<uint32_t>(modulus))};
+      const result_type r5{static_cast<result_type>(static_cast<uint32_t>(g()) % static_cast<uint32_t>(modulus))};
       S.r[0] = r1;
       S.r[1] = r2;
       S.r[2] = r3;
